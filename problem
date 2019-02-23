@@ -1,0 +1,72 @@
+Problem Space
+
+
+Many travelers don't have a fixed plan in mind when they are exploring a new destination. Our mission is to build a personalized itinerary planner based on budget and number of days to inspire travelers to seek out the memorable things to do.
+
+
+
+To test this concept, the product team has sent your team a JSON file with a subset of activities from Berlin (1000 in total):
+
+
+You can find this file here: http://tiny.cc/gyg-berlin-01
+
+
+
+You need to implement a command line tool that will receive 3 parameters: the activities file path, the budget and the number of days. As output you need to print a json schema to the standard output with a suggested schedule (see details below).
+
+
+
+The Activities JSON file schema definition
+
+
+The input file is a collection of activities, which have the following fields:
+
+id: integer the identifies the activity.
+
+duration: integer representing the duration of the activity in minutes. An activity duration is a multiple of 30 starting from 30 to 240.
+
+price: integer representing the cost of the activity. It’s a value between 5 and 500.
+
+
+
+Input constraints:
+
+budget: integer between 100 and 2000.
+
+days: integer between 1 and 5.
+
+The average budget to be allocated per day needs to be 50. Which means for budget 100 you can only have 1 or 2 days. Which also means the minimum budget for 5 days needs to be 250.
+
+
+
+The output JSON schema and its constraints:
+
+An example of the output can be found here: http://tiny.cc/gyg-berlin-01-response
+
+Basically the response carries a schedule with a summary information about how much of the budget entered you spent (budget_spent) and the time spent in the activities in minutes (time_spent). Also, the schedule returns the details of each day including the itinerary with the selected activities and their start dates.
+
+
+
+Output constraints to observe:
+
+A day has 12 hours. The first activity needs to start at 10:00 and the last needs to finish before 22:00 (inclusive).
+
+There is a commute time between activities of 30 minutes, which means if you finish an activity at 11:30 you can only start another at 12:00. The JSON file above has examples.
+
+Activities are available to start every 30 minutes from 10:00.
+
+Your solution needs to have a minimum of at least 3 activities per day which means all days from the input must be used.
+
+You need to consume at least 60% of the budget.
+
+If your algorithm cannot meet any requirement, please return a json with ‘error’ field only containing a string with the respective error message.
+
+We are not waiting for an optimal solution. If your algorithm cannot fulfill a specific use case, please return the error message mentioned above. The more use cases you algorithm covers, the better.
+
+
+
+Solution Space
+
+Your command line tool can be executed in any language (below we provide a skeleton in PHP).
+
+Please, together with your implementation, provide a README file on how to run your solution and its requirements. We have an automated tool that will receive your command line tool and execute tests on top of it. So please follow the instructions otherwise your test will be compromised.
